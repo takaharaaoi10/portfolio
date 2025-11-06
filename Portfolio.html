@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aoi Takahara - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #020617;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animated {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+        }
+
+        .bg-gradient {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at top right, rgba(22, 78, 99, 0.2), #020617, #020617);
+        }
+
+        .bg-orb-1, .bg-orb-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(120px);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .bg-orb-1 {
+            top: 0;
+            right: 0;
+            background: rgba(6, 182, 212, 0.1);
+        }
+
+        .bg-orb-2 {
+            bottom: 0;
+            left: 0;
+            background: rgba(59, 130, 246, 0.1);
+            animation-delay: 1s;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            transition: all 0.3s;
+        }
+
+        nav.scrolled {
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(6, 182, 212, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #22d3ee;
+        }
+
+        .btn {
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #0891b2, #2563eb);
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            color: #22d3ee;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: rgba(6, 182, 212, 0.1);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 1.5rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 6rem);
+            background: linear-gradient(135deg, #22d3ee, #3b82f6, #a855f7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 3vw, 1.875rem);
+            color: #cbd5e1;
+            margin-bottom: 3rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .social-link {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #22d3ee;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: rgba(6, 182, 212, 0.1);
+            border-color: rgba(6, 182, 212, 0.4);
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(6, 182, 212, 0.1);
+            color: #22d3ee;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            color: #94a3b8;
+            max-width: 42rem;
+            margin: 0 auto;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid #1e293b;
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: rgba(6, 182, 212, 0.4);
+            transform: translateY(-4px);
+        }
+
+        .project-image {
+            position: relative;
+            height: 192px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, #0f172a, rgba(15, 23, 42, 0.4), transparent);
+            opacity: 0.6;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-description {
+            color: #94a3b8;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            padding: 0.25rem 0.75rem;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            color: #22d3ee;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+        }
+
+        .project-link {
+            color: #22d3ee;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .project-link:hover {
+            color: #67e8f9;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 56rem;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .skill-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid #334155;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .skill-card:hover {
+            border-color: rgba(6, 182, 212, 0.4);
+            background: rgba(6, 182, 212, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            color: #22d3ee;
+            font-size: 1.5rem;
+        }
+
+        .skill-name {
+            color: #cbd5e1;
+            font-size: 0.875rem;
+            text-align: center;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-content {
+            color: #94a3b8;
+            line-height: 1.8;
+        }
+
+        .about-content p {
+            margin-bottom: 1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            background: linear-gradient(135deg, #22d3ee, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            font-size: 0.875rem;
+        }
+
+        .about-image {
+            position: relative;
+            width: 100%;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 1rem;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .about-image-glow {
+            position: absolute;
+            bottom: -1.5rem;
+            right: -1.5rem;
+            width: 12rem;
+            height: 12rem;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(59, 130, 246, 0.2));
+            border-radius: 50%;
+            filter: blur(3rem);
+            z-index: -1;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid #334155;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .contact-card:hover {
+            border-color: rgba(6, 182, 212, 0.4);
+            background: rgba(6, 182, 212, 0.05);
+            transform: scale(1.05);
+        }
+
+        .contact-icon {
+            color: #22d3ee;
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-title {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-value {
+            color: #94a3b8;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 1.5rem;
+            border-top: 1px solid #1e293b;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(2, 6, 23, 0.95);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .bg-alt {
+            background: rgba(15, 23, 42, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animated">
+        <div class="bg-gradient"></div>
+        <div class="bg-orb-1"></div>
+        <div class="bg-orb-2"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <span class="logo-text">Aoi Takahara</span>
+            </div>
+
+            <div class="nav-menu" id="navMenu">
+                <a href="#home">Home</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="mailto:takaharaaoi10@gmail.com" class="btn btn-primary">Get in Touch</a>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Aoi Takahara</h1>
+            <p class="hero-subtitle">Project Analyst & Software Developer</p>
+
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">
+                    View My Work
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="https://drive.google.com/file/d/15k-FsmHHVYRLdbgidNDbmP_92K_65-nF/view?usp=sharing" target="_blank" class="btn btn-outline">
+                    Download Resume
+                </a>
+            </div>
+
+            <div class="social-links">
+                <a href="https://github.com/takaharaaoi10" target="_blank" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/aoi-takahara" target="_blank" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:takaharaaoi10@gmail.com" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge">Featured Work</span>
+                <h2>Recent Projects</h2>
+                <p class="section-description">
+                    A selection of my latest work showcasing creative and technical solutions.
+                </p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1758786977080-a5e60a3f843c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080" alt="My Time Capsule">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">My Time Capsule</h3>
+                        <p class="project-description">
+                            Swift-based iOS app for creating digital time capsules with text, images, and scheduled unlock dates. Reached 99k+ impressions and 1.1k+ downloads across 5 countries.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Swift</span>
+                            <span class="tag">iOS</span>
+                            <span class="tag">UIKit</span>
+                            <span class="tag">Apple Developer Program</span>
+                        </div>
+                        <a href="https://apps.apple.com/us/app/my-time-capsule/id6744904334" target="_blank" class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1652422485224-102f6784c149?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080" alt="Mintly">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Mintly</h3>
+                        <p class="project-description">
+                            Swift-based personal budget tracking iOS app with intuitive SwiftUI screens. Users can track income, expenses, and transaction history with pie chart data visualization. Reached 800+ users across 5 countries.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Swift</span>
+                            <span class="tag">SwiftUI</span>
+                            <span class="tag">iOS</span>
+                            <span class="tag">Apple Developer Program</span>
+                        </div>
+                        <a href="https://apps.apple.com/us/app/mintly/id6748284045" target="_blank" class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1759661966728-4a02e3c6ed91?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080" alt="Video Game Sales">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Global Video Game Sales: A Data-Driven Analysis</h3>
+                        <p class="project-description">
+                            Analyzed video game sales dataset to identify key industry trends. Examined total sales by genre, platform trends over time, and regional distribution.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Tableau</span>
+                            <span class="tag">Excel</span>
+                            <span class="tag">Kaggle</span>
+                            <span class="tag">Data Analysis</span>
+                        </div>
+                        <a href="https://public.tableau.com/views/GlobalVideoGameSalesAnalysis_17617010937790/Dashboard1" target="_blank" class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1593437955835-fc8c51725430?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080" alt="Google Search Analysis">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Google Search Market Share Analysis</h3>
+                        <p class="project-description">
+                            Analyzed Google's global search market share, exploring how users engage with Google daily, which devices they use most frequently, and how Google maintains dominance over competitors.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Kaggle</span>
+                            <span class="tag">Excel</span>
+                            <span class="tag">PowerPoint</span>
+                            <span class="tag">Data Analysis</span>
+                        </div>
+                        <a href="https://drive.google.com/file/d/10CRqU45MNarVyRcNqOgJODEnono9pPM7/view" target="_blank" class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1582203914689-d5cc1850fcb2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080" alt="TrackReads">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">TrackReads</h3>
+                        <p class="project-description">
+                            Produced a SwiftUI-based reading tracker app allowing users to manage and organize books by reading status, notes, and priorities, reaching 790+ users across 5 countries.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">SwiftUI</span>
+                            <span class="tag">iOS Development</span>
+                            <span class="tag">Swift</span>
+                            <span class="tag">App Store</span>
+                        </div>
+                        <a href="https://apps.apple.com/us/app/trackreads/id6748193447" target="_blank" class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1567606404787-ebd010176fdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080" alt="Netflix Growth">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">The Next Growth Frontier for Netflix</h3>
+                        <p class="project-description">
+                            Strategic analysis exploring Netflix's potential growth opportunities and expansion strategies in the evolving streaming landscape.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Business Strategy</span>
+                            <span class="tag">Market Analysis</span>
+                            <span class="tag">Product Management</span>
+                            <span class="tag">Google Slides</span>
+                        </div>
+                        <a href="https://docs.google.com/presentation/d/17kThTg_Zewir7hb6QV9Ycj1qgdrg04bU9LacYAnQsMQ/edit" target="_blank" class="project-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="bg-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge">Expertise</span>
+                <h2>Skills & Technologies</h2>
+                <p class="section-description">
+                    Modern tools and frameworks I use to bring ideas to life
+                </p>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-palette"></i></div>
+                    <div class="skill-name">Figma</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-chart-bar"></i></div>
+                    <div class="skill-name">Tableau</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-check-square"></i></div>
+                    <div class="skill-name">Jira</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fab fa-python"></i></div>
+                    <div class="skill-name">Python</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                    <div class="skill-name">HTML</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+                    <div class="skill-name">CSS</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-file-excel"></i></div>
+                    <div class="skill-name">Microsoft Excel</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-image"></i></div>
+                    <div class="skill-name">Adobe Photoshop</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div>
+                    <span class="badge">About Me</span>
+                    <h2>Turning Ideas Into Reality</h2>
+                    <div class="about-content">
+                        <p>
+                            Hey, my name is Aoi! I am a Junior studying Business Analytics and Computer Programming at the University of Southern California. I am passionate about tech and business to create impactful solutions, with the goals of entering product management and tech entrepreneurship.
+                        </p>
+                        <p>
+                            I love to develop iOS apps and am currently contributing to The Daily Trojan, a USC newspaper publisher, as a graphic designer and software engineer. Additionally, I am a Project Analyst at techie, a USC business tech organization, where I am collaborating with Soapbox, specializing in technology. Furthermore, as part of the Cloud Business Technology Group, we are currently working with the Crypto Arena as our client to develop a proposal to strengthen their existing brand pillars.
+                        </p>
+                        <p>
+                            When I'm not working, you'll find me hanging out with my siblings, reading romance novels, or volunteering at my local dojo, and I am always discovering new ways to connect with and support my community.
+                        </p>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat">
+                            <div class="stat-value">Project</div>
+                            <p class="stat-label">Analyst</p>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">iOS</div>
+                            <p class="stat-label">Developer</p>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Product</div>
+                            <p class="stat-label">Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-image">
+                    <img src="https://i.postimg.cc/Y4skFpXS/profile.jpg" alt="Aoi Takahara" onerror="this.src='https://via.placeholder.com/800x1000/1e293b/22d3ee?text=Aoi+Takahara'">
+                    <div class="about-image-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge">Get In Touch</span>
+                <h2>Let's Work Together</h2>
+                <p class="section-description" style="font-size: 1.125rem;">
+                    I'm always excited to collaborate on new projects, discuss product ideas, or chat about technology and business. Feel free to reach out!
+                </p>
+            </div>
+
+            <div class="contact-grid">
+                <a href="mailto:takaharaaoi10@gmail.com" class="contact-card">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <h3 class="contact-title">Email</h3>
+                    <p class="contact-value">takaharaaoi10@gmail.com</p>
+                </a>
+
+                <a href="https://github.com/takaharaaoi10" target="_blank" class="contact-card">
+                    <div class="contact-icon"><i class="fab fa-github"></i></div>
+                    <h3 class="contact-title">GitHub</h3>
+                    <p class="contact-value">@takaharaaoi10</p>
+                </a>
+
+                <a href="https://www.linkedin.com/in/aoi-takahara" target="_blank" class="contact-card">
+                    <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+                    <h3 class="contact-title">LinkedIn</h3>
+                    <p class="contact-value">Aoi Takahara</p>
+                </a>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="mailto:takaharaaoi10@gmail.com" class="btn btn-primary" style="font-size: 1.125rem; padding: 0.75rem 2rem;">
+                    Start a Conversation
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Aoi Takahara. Crafted with ambition and to inspire</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking a link
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.project-card, .skill-card, .contact-card, .section-header').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
